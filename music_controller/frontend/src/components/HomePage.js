@@ -8,6 +8,7 @@ import {
     Link,
     Redirect,
 } from "react-router-dom";
+// In newer version of the react-router-dom Switch keyword has been replaced by Routes
 // import { BrowserRouter, Routes, Route, Link, Redirect } from "react-router-dom";
 export default class HomePage extends Component {
     constructor(props) {
