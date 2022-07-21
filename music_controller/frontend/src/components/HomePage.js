@@ -23,6 +23,7 @@ export default class HomePage extends Component {
         this.state = {
             roomCode: null,
         };
+        this.clearRoomCode = this.clearRoomCode.bind(this);
     }
 
     // Life cycle component
@@ -34,6 +35,12 @@ export default class HomePage extends Component {
                     roomCode: data.code,
                 });
             });
+    }
+
+    clearRoomCode() {
+        this.setState({
+            roomCode: null,
+        })
     }
 
     renderHomePage() {
@@ -69,13 +76,15 @@ export default class HomePage extends Component {
                             return this.state.roomCode ? (
                                 <Redirect to={`/room/${this.state.roomCode}`} />
                             ) : (
-                                this.renderHomePage
+                                this.renderHomePage()
                             );
                         }}
                     ></Route>
                     <Route path="/join" component={RoomJoinPage}></Route>
                     <Route path="/create" component={CreateRoomPage}></Route>
-                    <Route path="/room/:roomCode" component={Room}></Route>
+                    <Route path="/room/:roomCode" render={(props) => {
+                        return <Room {...props} leaveRoomCallback={this.clearRoomCode}></Room>
+                    }}></Route>
                 </Switch>
             </Router>
         );
