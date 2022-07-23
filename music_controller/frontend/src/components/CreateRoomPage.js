@@ -11,7 +11,15 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 export default class CreateRoomPage extends Component {
-    defaultVotes = 2;
+
+    static defaultProps = {
+        defaultVotes: 2,
+        guestCanpause: true,
+        update: false,
+        roomCode: null,
+    }
+
+
     constructor(props) {
         super(props);
         this.state = {
